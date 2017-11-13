@@ -13,8 +13,21 @@
 	<!--扫描控制器  (扫描控制器所在的包)-->
 	<context:component-scan 
 		base-package="cn.smbms.service,cn.smbms.controller"/>
-	<!--开启注解扫描  -->
-	<mvc:annotation-driven/>
+	<!-- 开启注解扫描 -->
+	<mvc:annotation-driven>
+		<!-- JSON中文乱码 -->
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json;charset=UTF-8</value>
+						<value>text/html;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
 	<!--视图解析器  -->
 	<bean  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/"/>
